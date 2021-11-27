@@ -14,7 +14,12 @@ module.exports = {
         apiToken: process.env.DATO_CMS_TOKEN,
       },
     },
-    "gatsby-plugin-theme-ui",
+    {
+      resolve: "gatsby-plugin-theme-ui",
+      options: {
+        preset: require("./src/theme.ts"),
+      },
+    },
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
