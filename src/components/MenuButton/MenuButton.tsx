@@ -9,8 +9,8 @@ interface IMenuButton {
 }
 
 export default function MenuButton({
-  width = 220,
-  height = 220,
+  width = 22,
+  height = 22,
   backgroundColor = "#980707",
   color = "#DFDFDF",
 }: IMenuButton) {
