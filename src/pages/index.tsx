@@ -27,11 +27,9 @@ export default function IndexPage() {
 
   const pageData = pageQuery?.datoCmsLandingpage;
 
-  console.log("page data", pageData);
-
   //states
   const [navIsOpen, toggleNav] = useState(false);
-
+  console.log("nav is open", navIsOpen);
   return (
     <Flex
       sx={{
@@ -42,7 +40,10 @@ export default function IndexPage() {
       }}
     >
       <Box sx={{ cursor: "pointer" }}>
-        <MenuButton onClick={() => toggleNav(!navIsOpen)}></MenuButton>
+        <MenuButton
+          onClick={() => toggleNav(!navIsOpen)}
+          isOpen={navIsOpen}
+        ></MenuButton>
       </Box>
       {pageData?.heroImage && (
         <Box sx={{ padding: "3xl" }}>

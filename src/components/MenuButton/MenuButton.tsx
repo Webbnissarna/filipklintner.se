@@ -7,6 +7,7 @@ interface IMenuButton {
   backgroundColor?: string;
   color?: string;
   onClick: () => void;
+  isOpen: boolean;
 }
 
 export default function MenuButton({
@@ -15,6 +16,7 @@ export default function MenuButton({
   backgroundColor = "#980707",
   color = "#DFDFDF",
   onClick,
+  isOpen,
 }: IMenuButton) {
   return (
     <motion.svg
@@ -24,24 +26,39 @@ export default function MenuButton({
       viewBox="0 0 22 22"
       xmlns={"http://www.w3.org/2000/motion.svg"}
       onClick={onClick}
+      variants={{
+        closed: {},
+        open: {},
+      }}
+      initial={"closed"}
+      animate={isOpen ? "open" : "closed"}
     >
       <motion.rect width={22} height={22} rx={11} fill={backgroundColor} />
-      <motion.path d={"M 5 6 L 17 6"} strokeWidth={2} stroke={color} />
-      <motion.path d={"M 5 11 L 17 11"} strokeWidth={2} stroke={color} />
-      <motion.path d={"M 5 16 L 17 16"} strokeWidth={2} stroke={color} />
+      <motion.path
+        variants={{
+          closed: { d: "M 5 6 L 17 6" },
+          open: { d: "M7 7L15.4853 15.4853" },
+        }}
+        strokeWidth={2}
+        stroke={color}
+      />
+      <motion.path
+        variants={{
+          closed: { d: "M 5 11 L 17 11" },
+          open: { strokeWidth: 0 },
+        }}
+        transition={{ duration: 0.1 }}
+        strokeWidth={2}
+        stroke={color}
+      />
+      <motion.path
+        variants={{
+          closed: { d: "M 5 16 L 17 16" },
+          open: { d: "M7 15.4853L15.4853 7.00001" },
+        }}
+        strokeWidth={2}
+        stroke={color}
+      />
     </motion.svg>
   );
 }
-
-<svg
-  width="22"
-  height="22"
-  viewBox="0 0 22 22"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <rect width="22" height="22" rx="11" fill="#980707" />
-  <rect x="5" y="5" width="12" height="2" rx="1" fill="#DFDFDF" />
-  <rect x="5" y="10" width="12" height="2" rx="1" fill="#DFDFDF" />
-  <rect x="5" y="15" width="12" height="2" rx="1" fill="#DFDFDF" />
-</svg>;
