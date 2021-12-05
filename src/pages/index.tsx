@@ -5,6 +5,7 @@ import MenuButton from "../components/MenuButton/MenuButton";
 
 import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { useState } from "react";
 
 // markup
 export default function IndexPage() {
@@ -29,7 +30,8 @@ export default function IndexPage() {
   console.log("page data", pageData);
 
   //states
-const IndexPage = () => {
+  const [navIsOpen, toggleNav] = useState(false);
+
   return (
     <Flex
       sx={{
@@ -40,7 +42,7 @@ const IndexPage = () => {
       }}
     >
       <Box sx={{ cursor: "pointer" }}>
-        <MenuButton></MenuButton>
+        <MenuButton onClick={() => toggleNav(!navIsOpen)}></MenuButton>
       </Box>
       {pageData?.heroImage && (
         <Box sx={{ padding: "3xl" }}>

@@ -6,6 +6,7 @@ interface IMenuButton {
   height?: number;
   backgroundColor?: string;
   color?: string;
+  onClick: () => void;
 }
 
 export default function MenuButton({
@@ -13,6 +14,7 @@ export default function MenuButton({
   height = 22,
   backgroundColor = "#980707",
   color = "#DFDFDF",
+  onClick,
 }: IMenuButton) {
   return (
     <motion.svg
@@ -21,6 +23,7 @@ export default function MenuButton({
       fill="none"
       viewBox="0 0 22 22"
       xmlns={"http://www.w3.org/2000/motion.svg"}
+      onClick={onClick}
     >
       <motion.rect width={22} height={22} rx={11} fill={backgroundColor} />
       <motion.path d={"M 5 6 L 17 6"} strokeWidth={2} stroke={color} />
