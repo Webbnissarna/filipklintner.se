@@ -4,6 +4,7 @@ module.exports = {
     winered: "#980707",
     grey: "#DFDFDF",
     brown: "#713D20",
+    backdrop: "#A5A5A5",
   },
   fonts: {
     sanSerif: "Jost, Roboto, sans-serif",
@@ -17,5 +18,10 @@ module.exports = {
     xl: "1.25rem",
     "2xl": "1.5rem",
     "3xl": "2rem",
+  },
+  zIndices: {
+    normal: 0,
+    backdrop: 1,
+    overlay: 2,
   },
 };

@@ -6,6 +6,10 @@ import MenuButton from "../components/MenuButton/MenuButton";
 import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useState } from "react";
+import Backdrop from "../components/Backdrop";
+import MenuLinkContainer from "../components/MenuButton/MenuLinkContainer";
+import MenuLink from "../components/MenuButton/MenuLink";
+import { AnimatePresence } from "framer-motion";
 
 // markup
 export default function IndexPage() {
@@ -39,20 +43,41 @@ export default function IndexPage() {
         paddingTop: "xs",
       }}
     >
-      <Box sx={{ cursor: "pointer" }}>
-        <MenuButton
-          onClick={() => toggleNav(!navIsOpen)}
-          isOpen={navIsOpen}
-        ></MenuButton>
-      </Box>
-      {pageData?.heroImage && (
-        <Box sx={{ padding: "3xl" }}>
-          <GatsbyImage
-            image={pageData?.heroImage?.gatsbyImageData}
-            alt={pageData?.heroImage?.alt}
-          />
-        </Box>
-      )}
+      <AnimatePresence>
+        <Flex
+          id={`menu-nav`}
+          sx={{
+            zIndex: "overlay",
+            flexDirection: "column",
+            alignItems: "center",
+            position: "relative",
+          }}
+        >
+          <Box sx={{ cursor: "pointer" }}>
+            <MenuButton
+              onClick={() => toggleNav(!navIsOpen)}
+              isOpen={navIsOpen}
+            />
+          </Box>
+          {navIsOpen ? (
+            <MenuLinkContainer key={"linkContainer"}>
+              <MenuLink>About</MenuLink>
+              <MenuLink>Sketches</MenuLink>
+              <MenuLink>Paintings</MenuLink>
+              <MenuLink>Exhibitions</MenuLink>
+            </MenuLinkContainer>
+          ) : null}
+        </Flex>
+        {pageData?.heroImage && (
+          <Box sx={{ padding: "3xl" }}>
+            <GatsbyImage
+              image={pageData?.heroImage?.gatsbyImageData}
+              alt={pageData?.heroImage?.alt}
+            />
+          </Box>
+        )}
+        <Backdrop isOpen={navIsOpen} onClick={() => toggleNav(!navIsOpen)} />
+      </AnimatePresence>
     </Flex>
   );
 }
