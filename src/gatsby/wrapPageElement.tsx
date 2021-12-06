@@ -12,22 +12,22 @@ type WrapPageElement =
 
 export const wrapPageElement: WrapPageElement = ({ element }: never) => {
   return (
-    <div>
+    <Box id={"pagewrap"}>
       <Box
         sx={{
           borderStyle: "solid",
           borderColor: "brown",
           borderWidth: 3,
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
+          minHeight: "100vh",
+          // top: 0,
+          // right: 0,
+          // bottom: 0,
+          // left: 0,
         }}
       >
         <Header />
         <main>{element}</main>
       </Box>
-    </div>
+    </Box>
   );
 };
