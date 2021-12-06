@@ -33,7 +33,6 @@ export default function IndexPage() {
 
   //states
   const [navIsOpen, toggleNav] = useState(false);
-  console.log("nav is open", navIsOpen);
   return (
     <Flex
       sx={{
@@ -92,7 +91,6 @@ function toggleNavigation(
   navState: boolean,
   setNavState: (state: boolean) => void
 ) {
-  console.log("toggle");
   setNavState(navState);
   document.body.style.overflow = navState ? "hidden" : "auto";
 }
