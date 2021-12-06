@@ -55,7 +55,7 @@ export default function IndexPage() {
         >
           <Box sx={{ cursor: "pointer" }} key={"menu-button-container"}>
             <MenuButton
-              onClick={() => toggleNavigation(!navIsOpen, toggleNav)}
+              onClick={() => toggleNav(!navIsOpen)}
               isOpen={navIsOpen}
             />
           </Box>
@@ -77,20 +77,9 @@ export default function IndexPage() {
           </Box>
         )}
         {navIsOpen ? (
-          <Backdrop
-            onClick={() => toggleNavigation(false, toggleNav)}
-            key={"menu-backdrop"}
-          />
+          <Backdrop onClick={() => toggleNav(false)} key={"menu-backdrop"} />
         ) : null}
       </AnimatePresence>
     </Flex>
   );
-}
-
-function toggleNavigation(
-  navState: boolean,
-  setNavState: (state: boolean) => void
-) {
-  setNavState(navState);
-  document.body.style.overflow = navState ? "hidden" : "auto";
 }
