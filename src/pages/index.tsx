@@ -42,6 +42,7 @@ export default function IndexPage() {
         alignItems: "center",
         paddingTop: "xs",
       }}
+      id={"index-page"}
     >
       <AnimatePresence>
         <Flex
@@ -53,9 +54,9 @@ export default function IndexPage() {
             position: "relative",
           }}
         >
-          <Box sx={{ cursor: "pointer" }}>
+          <Box sx={{ cursor: "pointer" }} key={"menu-button-container"}>
             <MenuButton
-              onClick={() => toggleNav(!navIsOpen)}
+              onClick={() => toggleNavigation(!navIsOpen, toggleNav)}
               isOpen={navIsOpen}
             />
           </Box>
@@ -69,15 +70,29 @@ export default function IndexPage() {
           ) : null}
         </Flex>
         {pageData?.heroImage && (
-          <Box sx={{ padding: "3xl" }}>
+          <Box sx={{ padding: "3xl" }} key={"hero-image-padding"}>
             <GatsbyImage
               image={pageData?.heroImage?.gatsbyImageData}
               alt={pageData?.heroImage?.alt}
             />
           </Box>
         )}
-        <Backdrop isOpen={navIsOpen} onClick={() => toggleNav(!navIsOpen)} />
+        {navIsOpen ? (
+          <Backdrop
+            onClick={() => toggleNavigation(false, toggleNav)}
+            key={"menu-backdrop"}
+          />
+        ) : null}
       </AnimatePresence>
     </Flex>
   );
+}
+
+function toggleNavigation(
+  navState: boolean,
+  setNavState: (state: boolean) => void
+) {
+  console.log("toggle");
+  setNavState(navState);
+  document.body.style.overflow = navState ? "hidden" : "auto";
 }
