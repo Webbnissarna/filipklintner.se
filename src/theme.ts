@@ -9,6 +9,9 @@ module.exports = {
   fonts: {
     sanSerif: "Jost, Roboto, sans-serif",
   },
+  fontSizes: {
+    footer: "0.625rem",
+  },
   space: {
     "2xs": "0.25rem",
     xs: "0.375rem",
