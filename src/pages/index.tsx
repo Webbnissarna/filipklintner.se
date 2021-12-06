@@ -69,7 +69,10 @@ export default function IndexPage() {
           ) : null}
         </Flex>
         {pageData?.heroImage && (
-          <Box sx={{ padding: "3xl" }} key={"hero-image-padding"}>
+          <Box
+            sx={{ paddingX: "10%", paddingTop: "lg" }}
+            key={"hero-image-padding"}
+          >
             <GatsbyImage
               image={pageData?.heroImage?.gatsbyImageData}
               alt={pageData?.heroImage?.alt}
