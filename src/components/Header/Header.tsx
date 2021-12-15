@@ -15,7 +15,7 @@ export default function Header({}) {
         as={"h1"}
         sx={{
           letterSpacing: "0.5rem",
-          fontFamily: "sanSerif",
+          fontFamily: "sans",
           fontSize: "18px",
           fontWeight: 300,
         }}

@@ -9,7 +9,7 @@ export default function Footer() {
         width: "100%",
         alignItems: "center",
         flexDirection: "column",
-        fontFamily: "sanSerif",
+        fontFamily: "sans",
         fontSize: "footer",
         letterSpacing: "0.4rem",
         flexGrow: 1,

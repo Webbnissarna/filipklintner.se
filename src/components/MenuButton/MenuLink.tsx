@@ -7,7 +7,7 @@ export default function MenuLink({ children }: { children?: React.ReactNode }) {
       as="a"
       sx={{
         letterSpacing: "0.2rem",
-        fontFamily: "sanSerif",
+        fontFamily: "sans",
         cursor: "pointer",
       }}
     >

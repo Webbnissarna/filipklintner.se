@@ -1,15 +1,25 @@
 /** @jsx jsx */
-import { Box, Flex } from "@theme-ui/components";
+import { Box, Flex, Text } from "@theme-ui/components";
 import { jsx } from "@theme-ui/core";
 import MenuButton from "../components/MenuButton/MenuButton";
 
 import { useStaticQuery, graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { useState } from "react";
 import Backdrop from "../components/Backdrop";
 import MenuLinkContainer from "../components/MenuButton/MenuLinkContainer";
 import MenuLink from "../components/MenuButton/MenuLink";
 import { AnimatePresence } from "framer-motion";
+
+interface IPageData {
+  title: string;
+  description?: string;
+  originalId: number;
+  heroImage: {
+    gatsbyImageData: IGatsbyImageData;
+    alt: string;
+  };
+}
 
 // markup
 export default function IndexPage() {
@@ -29,7 +39,7 @@ export default function IndexPage() {
     `
   );
 
-  const pageData = pageQuery?.datoCmsLandingpage;
+  const pageData: IPageData = pageQuery?.datoCmsLandingpage;
 
   //states
   const [navIsOpen, toggleNav] = useState(false);
@@ -68,6 +78,7 @@ export default function IndexPage() {
             </MenuLinkContainer>
           ) : null}
         </Flex>
+
         {pageData?.heroImage && (
           <Box
             sx={{ paddingX: "10%", paddingTop: "lg" }}
@@ -79,6 +90,17 @@ export default function IndexPage() {
             />
           </Box>
         )}
+        <Flex
+          sx={{
+            flexDirection: "column",
+            alignItems: "center",
+            paddingX: "10%",
+            fontFamily: "sans",
+          }}
+        >
+          <Text as="h1">{pageData.title}</Text>
+          <Text as="p">{pageData?.description}</Text>
+        </Flex>
         {navIsOpen ? (
           <Backdrop onClick={() => toggleNav(false)} key={"menu-backdrop"} />
         ) : null}

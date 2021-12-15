@@ -7,7 +7,7 @@ module.exports = {
     backdrop: "#A5A5A5",
   },
   fonts: {
-    sanSerif: "Jost, Roboto, sans-serif",
+    sans: "Jost, Roboto, sans-serif",
   },
   fontSizes: {
     footer: "0.625rem",
