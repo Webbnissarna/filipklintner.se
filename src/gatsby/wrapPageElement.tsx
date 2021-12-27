@@ -58,10 +58,10 @@ function Wrapper({ children }: { children: React.ReactNode }) {
               </Box>
               {navIsOpen ? (
                 <MenuLinkContainer key={"linkContainer"}>
-                  <MenuLink to={"about"}>About</MenuLink>
-                  <MenuLink to={"sketches"}>Sketches</MenuLink>
-                  <MenuLink to={"paintings"}>Paintings</MenuLink>
-                  <MenuLink to={"exhibitions"}>Exhibitions</MenuLink>
+                  <MenuLink to={"/about"}>About</MenuLink>
+                  <MenuLink to={"/sketches"}>Sketches</MenuLink>
+                  <MenuLink to={"/paintings"}>Paintings</MenuLink>
+                  <MenuLink to={"/exhibitions"}>Exhibitions</MenuLink>
                 </MenuLinkContainer>
               ) : null}
             </Flex>
