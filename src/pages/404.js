@@ -1,54 +1,49 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import * as React from "react";
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+import { motion } from "framer-motion";
+import { Box } from "theme-ui";
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-// markup
-const NotFoundPage = () => {
+export default function NotFoundPage() {
   return (
-    <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{" "}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{" "}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
+    <Box sx={{ paddingX: "md" }}>
+      <motion.svg
+        viewBox="0 0 20 15"
+        fill="none"
+        xmlns={"http://www.w3.org/2000/motion.svg"}
+        id="svg__no"
+      >
+        <motion.defs>
+          <motion.path id={"svg__n"} d="M 0 10 L 0 0 L 10 10 L 10 0 M 15 0" />
+          <motion.path
+            id={"svg__o"}
+            d={
+              "M15 0C 15 0 10 0 10 5 C 10 10 15 10 15 10 C 15 10 20 10 20 5 C 20 0 15 0 15 0"
+            }
+          />
+          <motion.clipPath id="svg__n__clip">
+            <motion.use xlinkHref={"#svg__n"} />
+          </motion.clipPath>
+          <motion.clipPath id="svg__o__clip">
+            <motion.use xlinkHref={"#svg__o"} />
+          </motion.clipPath>
+        </motion.defs>
+        <motion.g>
+          <motion.use
+            xlinkHref={"#svg__n"}
+            stroke={"#000"}
+            strokeWidth={2}
+            clipPath={"url(#svg__n__clip)"}
+            // strokeLinecap={"butt"}
+            strokeLinejoin={"bevel"}
+          />
+          <motion.use
+            stroke={"#000"}
+            strokeWidth={2}
+            xlinkHref={"#svg__o"}
+            clipPath={"url(#svg__o__clip)"}
+          />
+        </motion.g>
+      </motion.svg>
+    </Box>
+  );
 }
-
-export default NotFoundPage

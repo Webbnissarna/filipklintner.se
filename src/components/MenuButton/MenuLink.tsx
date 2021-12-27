@@ -1,7 +1,15 @@
 import { Box } from "@theme-ui/components";
 import React from "react";
 
-export default function MenuLink({ children }: { children?: React.ReactNode }) {
+import { navigate } from "gatsby";
+
+export default function MenuLink({
+  children,
+  to,
+}: {
+  children?: React.ReactNode;
+  to: string;
+}) {
   return (
     <Box
       as="a"
@@ -9,6 +17,9 @@ export default function MenuLink({ children }: { children?: React.ReactNode }) {
         letterSpacing: "0.2rem",
         fontFamily: "sans",
         cursor: "pointer",
+      }}
+      onClick={() => {
+        navigate(to);
       }}
     >
       {children}
