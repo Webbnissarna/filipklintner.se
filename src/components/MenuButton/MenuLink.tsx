@@ -6,9 +6,11 @@ import { navigate } from "gatsby";
 export default function MenuLink({
   children,
   to,
+  onClick,
 }: {
   children?: React.ReactNode;
   to: string;
+  onClick: () => void;
 }) {
   return (
     <Box
@@ -19,6 +21,7 @@ export default function MenuLink({
         cursor: "pointer",
       }}
       onClick={() => {
+        onClick();
         navigate(to);
       }}
     >

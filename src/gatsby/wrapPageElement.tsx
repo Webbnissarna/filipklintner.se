@@ -52,16 +52,36 @@ function Wrapper({ children }: { children: React.ReactNode }) {
             >
               <Box sx={{ cursor: "pointer" }} key={"menu-button-container"}>
                 <MenuButton
-                  onClick={() => toggleNav(!navIsOpen)}
+                  onClick={() => toggleNavigation(toggleNav, navIsOpen)}
                   isOpen={navIsOpen}
                 />
               </Box>
               {navIsOpen ? (
                 <MenuLinkContainer key={"linkContainer"}>
-                  <MenuLink to={"/about"}>About</MenuLink>
-                  <MenuLink to={"/sketches"}>Sketches</MenuLink>
-                  <MenuLink to={"/paintings"}>Paintings</MenuLink>
-                  <MenuLink to={"/exhibitions"}>Exhibitions</MenuLink>
+                  <MenuLink
+                    onClick={() => toggleNavigation(toggleNav, navIsOpen)}
+                    to={"/about"}
+                  >
+                    About
+                  </MenuLink>
+                  <MenuLink
+                    onClick={() => toggleNavigation(toggleNav, navIsOpen)}
+                    to={"/sketches"}
+                  >
+                    Sketches
+                  </MenuLink>
+                  <MenuLink
+                    onClick={() => toggleNavigation(toggleNav, navIsOpen)}
+                    to={"/paintings"}
+                  >
+                    Paintings
+                  </MenuLink>
+                  <MenuLink
+                    onClick={() => toggleNavigation(toggleNav, navIsOpen)}
+                    to={"/exhibitions"}
+                  >
+                    Exhibitions
+                  </MenuLink>
                 </MenuLinkContainer>
               ) : null}
             </Flex>
@@ -78,6 +98,13 @@ function Wrapper({ children }: { children: React.ReactNode }) {
       </Box>
     </Box>
   );
+}
+
+function toggleNavigation(
+  toggle: (val: boolean) => void,
+  value: boolean
+): void {
+  toggle(!value);
 }
 
 export const wrapPageElement: WrapPageElement = ({ element }: never) => {

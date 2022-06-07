@@ -1,5 +1,5 @@
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
-import React from "react";
+import React, { useState } from "react";
 
 import { Box, Flex, Grid, Text } from "theme-ui";
 
@@ -17,7 +17,7 @@ type TImage = {
 interface ICollection {
   title: string;
   description?: string;
-  gallery: Array<TImage>;
+  gallery?: Array<TImage>;
   slug: string;
 }
 
@@ -26,6 +26,10 @@ export default function Collection({
 }: {
   pageContext: ICollection;
 }) {
+  const [expandedImage, setExpandedImage] = useState<{
+    image: IGatsbyImageData;
+    alt: string;
+  } | null>(null);
   return (
     <Flex
       sx={{
@@ -52,18 +56,37 @@ export default function Collection({
           {pageContext.description}
         </Text>
       )}
-      <Grid columns={[2]}>
-        {pageContext.gallery.map((image, idx) => {
+      <Grid columns={[2]} gap={"md"}>
+        {pageContext.gallery?.map((image, idx) => {
           return (
             <Box
-              sx={{ gridColumn: idx % 3 === 0 ? "span 2" : "span 1" }}
+              sx={{
+                gridColumn: idx % 3 === 0 ? "span 2" : "span 1",
+                cursor: "pointer",
+              }}
               key={image.originalId}
             >
-              <GatsbyImage alt={image.alt} image={image.gatsbyImageData} />
+              <GatsbyImage
+                onClick={() => {
+                  setExpandedImage({
+                    image: image.gatsbyImageData,
+                    alt: image.alt,
+                  });
+                }}
+                alt={image.alt}
+                image={image.gatsbyImageData}
+              />
             </Box>
           );
         })}
       </Grid>
+      {expandedImage ? (
+        <Flex
+          sx={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
+        >
+          <GatsbyImage image={expandedImage.image} alt={expandedImage.alt} />
+        </Flex>
+      ) : null}
     </Flex>
   );
 }
