@@ -17,7 +17,7 @@ type TImage = {
 interface ICollection {
   title: string;
   description?: string;
-  gallery: Array<TImage>;
+  gallery?: Array<TImage>;
   slug: string;
 }
 
@@ -57,7 +57,7 @@ export default function Collection({
         </Text>
       )}
       <Grid columns={[2]} gap={"md"}>
-        {pageContext.gallery.map((image, idx) => {
+        {pageContext.gallery?.map((image, idx) => {
           return (
             <Box
               sx={{
